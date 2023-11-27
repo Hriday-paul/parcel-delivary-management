@@ -6,6 +6,7 @@ import Register from "../Pages/Register/Register";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import Private from "../Pages/Shared/Private/Private";
 import HomeDashboard from "../Pages/Dashboard/UserDashboard/HomeDashboard/HomeDashboard";
+import BookParcel from "../Pages/Dashboard/UserDashboard/BookParcel/BookParcel";
 
 
 
@@ -28,6 +29,10 @@ const rout = createBrowserRouter([
             {
                 path: "/dashboard",
                 element: <HomeDashboard></HomeDashboard>
+            },
+            {
+                path: "/dashboard/bookParcel",
+                element: <BookParcel></BookParcel>
             }
         ]
     },

@@ -53,10 +53,10 @@ const UserDashboard = () => {
                             </div>
                         </div>
 
-                        <MenuItem icon={<LuLayoutDashboard className='text-xl'></LuLayoutDashboard>} component={<Link className='font-medium uppercase' to="/" />}>
+                        <MenuItem icon={<LuLayoutDashboard className='text-xl'></LuLayoutDashboard>} component={<Link className='font-medium uppercase' to="/dashboard" />}>
                             Dashboard
                         </MenuItem>
-                        <MenuItem icon={<MdLibraryBooks className='text-xl'></MdLibraryBooks>} component={<Link className=' font-medium uppercase' to="/dashboard/parcel" />}>Book a Parcel</MenuItem>
+                        <MenuItem icon={<MdLibraryBooks className='text-xl'></MdLibraryBooks>} component={<Link className=' font-medium uppercase' to="/dashboard/bookParcel" />}>Book a Parcel</MenuItem>
                         <MenuItem icon={<FaListAlt className='text-xl'></FaListAlt>} component={<Link className='font-medium uppercase' to="/calendar" />}>My Parcels</MenuItem>
                         <MenuItem icon={<FaUserTie className='text-xl'></FaUserTie>} component={<Link className='font-medium uppercase' to="/e-commerce" />}>My Profile</MenuItem>
 
