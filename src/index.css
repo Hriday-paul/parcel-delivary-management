@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bm-item-list{
+    background-color: white;
+}
+.bm-burger-button{
+    height: 30px;
+    width: 30px;
+}
+.ant-float-btn-circle .ant-float-btn-body{
+    background-color: #1565C0;
+}
+.ant-float-btn-circle .ant-float-btn-body:hover{
+    background-color: #0b4f9c;
+}
+.anticon-vertical-align-top svg{
+    color: white;
+}
+.ant-btn{
+    background-color: #1c74d8;
+}
+
+.count span{
+    font-size: 30px;
+    font-weight: 600;
+    font-family: sans-serif;
+    color: #0B4F9C;
+}
+.count span::after{
+    content: "+";
+}
+
+.MuiFormControl-root .css-574lq2-MuiFormControl-root{
+    width: 100%;
+}
+
+  
