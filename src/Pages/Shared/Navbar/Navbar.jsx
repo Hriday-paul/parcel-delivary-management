@@ -27,7 +27,8 @@ const Navbar = () => {
                 <div>
                     <ul className='hidden md:flex gap-x-6 lg:gap-x-10 items-center justify-center'>
                         <li className='text-base font-medium text-indigo-950 font-sans uppercase hover:underline hover:underline-offset-4 decoration-2 decoration-dashed'><NavLink to="/">Home</NavLink></li>
-                        <li className='text-base font-medium text-indigo-950 font-sans uppercase'><NavLink to="/dashboard">Dashboard</NavLink></li>
+
+                        <li className='text-base font-medium text-indigo-950 font-sans uppercase hover:underline hover:underline-offset-4 decoration-2 decoration-dashed'><NavLink to="/dashboard">Dashboard</NavLink></li>
 
                         <li><Badge badgeContent={4} color='info'>
                             <IoIosNotifications className='text-2xl'></IoIosNotifications>
@@ -42,12 +43,12 @@ const Navbar = () => {
 
                         <div className="z-40 h-0 w-56 group-hover:h-auto group-hover:p-4 overflow-hidden absolute top-0 right-0 my-4 text-base mt-9 list-none bg-white divide-y divide-gray-100 rounded-lg shadow">
                             <div className="px-4 py-3">
-                                <span className="block text-sm text-gray-900 dark:text-white">{userInfo?.displayName}</span>
-                                <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">{userInfo?.email}</span>
+                                <span className="block text-sm text-gray-900 ">{userInfo?.displayName}</span>
+                                <span className="block text-sm  text-gray-500 truncate">{userInfo?.email}</span>
                             </div>
                             <ul className="py-2" aria-labelledby="user-menu-button">
                                 <li>
-                                    <Link to="/" className="flex items-center gap-x-1 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 "><LuLayoutDashboard></LuLayoutDashboard>Dashboard</Link>
+                                    <Link to="/dashboard" className="flex items-center gap-x-1 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 "><LuLayoutDashboard></LuLayoutDashboard>Dashboard</Link>
                                 </li>
                                 <li>
                                     <Link to="/" className="flex items-center gap-x-1 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"><CgProfile></CgProfile>Profile</Link>

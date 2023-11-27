@@ -1,9 +1,14 @@
+import UserDashboard from "./UserDashboard/UserDashboard";
+
+
 
 const Dashboard = () => {
+
+
     return (
-        <div>
-            dash
-        </div>
+       <div>
+            <UserDashboard></UserDashboard>
+       </div>
     );
 };
 
