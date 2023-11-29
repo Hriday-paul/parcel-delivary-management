@@ -25,7 +25,7 @@ const UserDashboard = () => {
                         menuItemStyles={{
                             button: {
                                 [`&.active`]: {
-                                    backgroundColor: '#0B0D0D',
+                                    backgroundColor: 'blue',
                                     color: '#fff',
                                 },
                                 ':hover': {
@@ -57,13 +57,13 @@ const UserDashboard = () => {
                             Dashboard
                         </MenuItem>
                         <MenuItem icon={<MdLibraryBooks className='text-xl'></MdLibraryBooks>} component={<Link className=' font-medium uppercase' to="/dashboard/bookParcel" />}>Book a Parcel</MenuItem>
-                        <MenuItem icon={<FaListAlt className='text-xl'></FaListAlt>} component={<Link className='font-medium uppercase' to="/calendar" />}>My Parcels</MenuItem>
+                        <MenuItem icon={<FaListAlt className='text-xl'></FaListAlt>} component={<Link className='font-medium uppercase' to="/dashboard/myParcels" />}>My Parcels</MenuItem>
                         <MenuItem icon={<FaUserTie className='text-xl'></FaUserTie>} component={<Link className='font-medium uppercase' to="/e-commerce" />}>My Profile</MenuItem>
 
 
                         <div className='border-t border-gray-500'>
                             <SubMenu icon={<IoMdSettings className='text-xl'></IoMdSettings>} label="Settings" className='font-medium' subMenuStyles={{ padding: '20px' }}>
-                                <MenuItem icon={<FiUserPlus className='text-lg'></FiUserPlus>} component={<Link className='bg-[#253031]' to="/documentation" />}>Sign In</MenuItem>
+                                <MenuItem icon={<FiUserPlus className='text-lg'></FiUserPlus>} component={<Link className='bg-[#253031]' to="/login" />}>Sign In</MenuItem>
                                 <MenuItem className='bg-[#253031] hover:bg-[#0B0D0D]' onClick={logOutUser} icon={<PiSignInDuotone className='text-lg'></PiSignInDuotone>} >Sign Out</MenuItem>
                             </SubMenu>
                         </div>

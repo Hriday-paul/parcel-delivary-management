@@ -15,11 +15,10 @@ const AddUser = () => {
         },
         onSuccess: (data, variables) => {
             // Invalidate and refetch
-            console.log(data)
+
             toast.success('Login Successfully');
-                
-                //state ? navig(`${state}`) : navig(`/`)
             
+                //state ? navig(`${state}`) : navig(`/`)
             queryClient.invalidateQueries({ queryKey: [variables.email] });
         },
 
