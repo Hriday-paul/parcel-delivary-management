@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import Swal from 'sweetalert2'
 import { useState } from "react";
 import { UserOutlined, MailOutlined, MobileOutlined } from '@ant-design/icons';
@@ -207,7 +207,7 @@ function Register() {
                                             render={({ field }) => (
                                                 <Input size="large" type="number" name="phone" id="phone" placeholder="+880..." {...register("phone", { required: "Phone number is required", minLength: 11 })} {...field} prefix={<MobileOutlined />} />
                                             )}
-                                            rules={{ required: 'email is required' }}
+                                            rules={{ required: 'phone is required' }}
                                         />
 
                                         {errors.phone?.type === "required" && (
@@ -247,7 +247,7 @@ function Register() {
                                             rules={{ required: 'email is required' }}
                                         />
                                         {errors.userType?.type === "required" && (
-                                            <p className="text-sm text-red-500 mt-2" role="alert">email is required</p>
+                                            <p className="text-sm text-red-500 mt-2" role="alert">User type is required</p>
                                         )}
 
                                     </div>
@@ -258,7 +258,6 @@ function Register() {
                                                 <InboxOutlined />
                                             </p>
                                             <p className="ant-upload-text">Click or drag your profile photo(optioanal)</p>
-
                                         </Dragger>
                                     </div>
 

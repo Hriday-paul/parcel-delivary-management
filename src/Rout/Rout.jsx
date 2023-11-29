@@ -8,6 +8,7 @@ import Private from "../Pages/Shared/Private/Private";
 import HomeDashboard from "../Pages/Dashboard/UserDashboard/HomeDashboard/HomeDashboard";
 import BookParcel from "../Pages/Dashboard/UserDashboard/BookParcel/BookParcel";
 import MyParcels from "../Pages/Dashboard/UserDashboard/MyParcels/MyParcels";
+import MyProfile from "../Pages/Dashboard/UserDashboard/MyProfile/MyProfile";
 
 
 
@@ -38,6 +39,10 @@ const rout = createBrowserRouter([
             {
                 path : '/dashboard/myParcels',
                 element : <MyParcels></MyParcels>
+            },
+            {
+                path : '/dashboard/myProfile',
+                element : <Private><MyProfile></MyProfile></Private>
             }
         ]
     },

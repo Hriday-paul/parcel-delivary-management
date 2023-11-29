@@ -37,8 +37,8 @@ const Navbar = () => {
                 </div>
                 <div className='flex gap-x-3 lg:gap-x-5 items-center'>
                     {userInfo ? <div className=' border border-gray-200 rounded-full cursor-pointer flex items-center group relative'>
-                        <img className="h-7 m-[3px] rounded-full" src={userInfo?.photoURL != null ? `${userInfo.photoURL}` : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUDOlaA7x6auc_yDvEigMgyktyrJBM34AFOaauo6-qXD5zg_vpZlZk9offXf9PMLdA0Lw&usqp=CAU"} alt="img" />
-                        
+                        <img className="h-7 w-7 m-[3px] rounded-full" src={userInfo?.photoURL !== null ? `${userInfo.photoURL}` : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUDOlaA7x6auc_yDvEigMgyktyrJBM34AFOaauo6-qXD5zg_vpZlZk9offXf9PMLdA0Lw&usqp=CAU"} alt="img" />
+
                         <RiArrowDropDownLine className='text-2xl -rotate-90  group-hover:-rotate-0 duration-200'></RiArrowDropDownLine>
 
                         <div className="z-40 h-0 w-56 group-hover:h-auto group-hover:p-4 overflow-hidden absolute top-0 right-0 my-4 text-base mt-9 list-none bg-white divide-y divide-gray-100 rounded-lg shadow">

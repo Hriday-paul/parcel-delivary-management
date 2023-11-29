@@ -36,5 +36,10 @@
     width: 100%;
 }
 
+.active {
+    background-color: #0B0D0D;
+    font-weight: 400;
+    /* Add any other styles you want for the active class */
+ }
 
   

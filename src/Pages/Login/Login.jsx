@@ -1,6 +1,6 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Swal from 'sweetalert2'
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { MailOutlined } from '@ant-design/icons';
 import { Input, Spin } from 'antd';
 import { Helmet } from 'react-helmet-async';
@@ -13,7 +13,16 @@ function Login() {
     const { loginUser, googleLogin } = useContext(authContxt)
     const [passwordVisible, setPasswordVisible] = useState(false)
     const [loader, setLoader] = useState(false);
-    const { mutate, isPending } = UpDateUser();
+    const { mutate, isPending, isSuccess } = UpDateUser();
+    const {state} = useLocation();
+    const navig = useNavigate();
+
+    useEffect(()=>{
+        if(isSuccess){
+            toast.success('Login Successfully');
+            state ? navig(`${state.from}`) : navig('/')
+        }
+    }, [isSuccess])
 
     const {
         register,
@@ -29,6 +38,7 @@ function Login() {
             .then(() => {
                 reset()
                 setLoader(false);
+                state ? navig(`${state.from}`) : navig('/')
                 toast.success("Login successfully");
             })
             .catch(() => {
@@ -111,8 +121,6 @@ function Login() {
                                         {errors.password?.type === "required" && (
                                             <p className="text-sm text-red-500 mt-2" role="alert">Password must required.</p>
                                         )}
-
-                                        <p className="mt-3 text-right text-gray-500"><Link to={"/forgetPass"}>Forget password!</Link></p>
                                     </div>
 
 

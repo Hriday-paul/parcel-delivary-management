@@ -13,10 +13,11 @@ import { Drawer, Space } from 'antd';
 import UpdateParcel from "./UpdateParcel/UpdateParcel";
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import UseAxiosSecure from "../../../../Hooks/UseAxiosSecure/UseAxiosSecure";
+import toast, { Toaster } from "react-hot-toast";
 
 const MyParcels = () => {
     const { userInfo } = useContext(authContxt);
-    const { data, isLoading } = UseMyparcels(userInfo.email);
+    const { data, isLoading, refetch } = UseMyparcels(userInfo.email);
     const [updateParcel, setUpdateParcel] = useState("");
     const axiosSecure = UseAxiosSecure();
 
@@ -31,9 +32,8 @@ const MyParcels = () => {
     };
 
     const handleDelete = (id) => {
-
         Swal.fire({
-            text: "Are you sure want to delete this food !",
+            text: "Are you sure want to delete your Booked Parcel !",
             icon: `warning`,
             cancelButtonText: "No",
             showCancelButton: true,
@@ -42,12 +42,18 @@ const MyParcels = () => {
         })
             .then(result => {
                 if (result.isConfirmed) {
-                    axiosSecure.delete(`/deleteFood?id=${id}`)
-                        .then(() => {
-                            setFoods(filter)
+                    axiosSecure.delete(`/deleteFood?id=${id}&&email=${userInfo.email}`)
+                        .then(({ data }) => {
+                            if (data.deletedCount > 0) {
+                                refetch();
+                                toast.success("your parcel DELETE successfully")
+                            }
+                            else {
+                                toast.error("Delete Failed")
+                            }
                         })
                 }
-                
+
             })
     }
 
@@ -64,7 +70,7 @@ const MyParcels = () => {
                         <LoadingOutlined style={{ fontSize: 30, }} spin />} /></div> :
                         <div>
                             {
-                                data ?
+                                data.length>0 ?
                                     <div className="">
                                         <div className="overflow-x-auto">
                                             <table className="w-full">
@@ -89,7 +95,7 @@ const MyParcels = () => {
                                                                     {parcel?.percelType}
                                                                 </td>
                                                                 <td className="text-center text-sm font-normal mx-2 lg:mx-2">
-                                                                    {parcel?.reqDate?.day + "/" + parcel?.reqDate?.month + "/" + parcel?.reqDate?.year}
+                                                                    {(new Date(parcel?.reqDate).getDate())+'/'+(new Date(parcel?.reqDate).getMonth()+1)+'/'+(new Date(parcel?.reqDate).getFullYear())}
                                                                 </td>
                                                                 <td className="text-center text-sm font-normal mx-2 lg:mx-2">
                                                                     {(new Date(parcel?.bookDate)).getDate() + '/' + ((new Date(parcel?.bookDate)).getMonth() + 1) + '/' + (new Date(parcel?.bookDate)).getFullYear()}
@@ -115,7 +121,9 @@ const MyParcels = () => {
                                                                 </td>
 
                                                                 <td className="text-center text-sm font-normal mx-2 lg:mx-2">
-                                                                    <Button onClick={() => showDrawer(parcel)} type="primary" icon={<EditOutlined />} />
+                                                                    {
+                                                                        parcel?.status ? <Button onClick={() => showDrawer(parcel)} type="primary" icon={<EditOutlined />} /> : <Button disabled={true} type="primary" icon={<EditOutlined />} />
+                                                                    }
 
                                                                     <Drawer title="Update Your Parcel Information"
                                                                         width={720}
@@ -134,10 +142,15 @@ const MyParcels = () => {
 
                                                                 </td>
                                                                 <td className="text-center text-sm font-normal mx-2 lg:mx-2">
-                                                                    <Button type="primary" icon={<TbMessage2Plus />} />
+                                                                    {
+                                                                        parcel?.deliveryMan ? <Button type="primary" icon={<TbMessage2Plus />} /> : <Button disabled={true} type="primary" icon={<TbMessage2Plus />} />
+                                                                    }
+
                                                                 </td>
                                                                 <td className="text-center text-sm font-normal mx-2 lg:mx-2">
-                                                                    <Button onClick={() => handleDelete(parcel._id)} type="primary" icon={<DeleteOutlined />}></Button>
+                                                                    {
+                                                                        parcel.status !== 'onWay' ? <Button onClick={() => handleDelete(parcel._id)} type="primary" icon={<DeleteOutlined />}></Button> : <Button disabled={true} type="primary" icon={<DeleteOutlined />}></Button>
+                                                                    }
                                                                 </td>
                                                             </tr>
                                                         })
@@ -146,13 +159,15 @@ const MyParcels = () => {
                                             </table>
                                         </div>
                                     </div >
-                                    : <div>
+                                    :
+                                    <div className="flex min-h-[70vh] justify-center items-center">
                                         <Empty></Empty>
                                     </div>
                             }
                         </div>
                 }
             </div>
+            <Toaster></Toaster>
         </div >
     );
 };

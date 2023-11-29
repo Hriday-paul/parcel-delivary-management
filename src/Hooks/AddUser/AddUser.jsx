@@ -1,12 +1,12 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import UseAxios from "../UseAxios/UseAxios";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 const AddUser = () => {
     const queryClient = useQueryClient();
-    //const { state } = useLocation();
-    //const navig = useNavigate();
+    const { state } = useLocation();
+    const navig = useNavigate();
     const axiosSequre = UseAxios();
     const { mutate, isPending } = useMutation({
         mutationFn: async (userInfo) => {
@@ -17,12 +17,12 @@ const AddUser = () => {
             // Invalidate and refetch
             if (data.upsertedCount || data.modifiedCount) {
                 toast.success('Registration Successfully');
-                //state ? navig(`${state}`) : navig(`/`)
+                state ? navig(`${state.from}`) : navig(`/`)
             }
             else{
                 toast.error('Something wents wrong');
             }
-            queryClient.invalidateQueries({ queryKey: [variables.email] });
+            queryClient.invalidateQueries({ queryKey: [`user${variables.email}`, `users`] });
         },
 
         onError: () => {

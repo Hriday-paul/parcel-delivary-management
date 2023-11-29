@@ -26,7 +26,7 @@ const UpdateParcel = ({parcelInfo}) => {
     } = useForm()
 
     const onSubmit = (data) => {
-        const parcelData = { ...data, weight, price: parseInt(price.current.value), reqDate: { day: date.$D, month: date.$M, year: date.$y }, bookDate: Date.now(), status: parcelInfo?.status, id : parcelInfo?._id, deliveryMan: parcelInfo?.deliveryMan, email : userInfo.email }
+        const parcelData = { ...data, weight, price: parseInt(price.current.value), reqDate : new Date(date?.$y, date?.$M, date?.$D,).getTime(), bookDate: Date.now(), status: parcelInfo?.status, id : parcelInfo?._id, deliveryMan: parcelInfo?.deliveryMan, email : userInfo.email }
 
         if (weight > 0 && date) {
             mutate(parcelData);
@@ -120,7 +120,7 @@ const UpdateParcel = ({parcelInfo}) => {
 
                             <DatePicker size="large"
                                 className="w-full"
-                                defaultValue={dayjs(`${parcelInfo?.reqDate?.year + "/" + parcelInfo?.reqDate?.month + "/" + parcelInfo?.reqDate?.day}`, dateFormat)}
+                                defaultValue={dayjs(`${(new Date(parcelInfo?.reqDate).getFullYear())+'/'+(new Date(parcelInfo?.reqDate).getMonth()+1)+'/'+(new Date(parcelInfo?.reqDate).getDate())}`, dateFormat)}
                                 format={dateFormat}
                                 onChange={(date) => {
                                     setDate(date);
