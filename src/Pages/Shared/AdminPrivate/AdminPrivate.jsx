@@ -1,17 +1,17 @@
+import { useContext } from "react";
+import UseAdmin from "../../../Hooks/UseAdmin/UseAdmin";
+import { authContxt } from "../../../ContextHandler/Authonicate/Authonicate";
 import { Spin } from "antd";
-import UseAdmin from "../../Hooks/UseAdmin/UseAdmin";
-import AdminRoot from "./AdminDashboard/AdminRoot/AdminRoot";
-import UserDashboard from "./UserDashboard/UserDashboard";
 import { LoadingOutlined } from '@ant-design/icons';
+import { Navigate, useLocation } from "react-router-dom";
 
 
-
-const Dashboard = () => {
+const AdminPrivate = ({ children }) => {
     const { data, isLoading } = UseAdmin();
+    const { loading, userInfo } = useContext(authContxt)
+    const location = useLocation();
 
-    console.log(data)
-
-    if (isLoading) {
+    if (loading || isLoading) {
         return <div className="min-h-[90vh] flex justify-center items-center">
             <Spin
                 size='large'
@@ -27,14 +27,11 @@ const Dashboard = () => {
             />
         </div>
     }
-
-    return (
-        <div>
-            {
-                data.admin ? <AdminRoot></AdminRoot> : <UserDashboard></UserDashboard>
-            }
-        </div>
-    );
+    if (userInfo && data.admin) {
+        return children
+    }
+    
+    return <Navigate to="/" state={{ from: location.pathname }} replace></Navigate>
 };
 
-export default Dashboard;
+export default AdminPrivate;

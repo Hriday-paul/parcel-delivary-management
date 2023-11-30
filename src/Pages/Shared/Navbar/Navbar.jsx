@@ -26,9 +26,9 @@ const Navbar = () => {
                 </div>
                 <div>
                     <ul className='hidden md:flex gap-x-6 lg:gap-x-10 items-center justify-center'>
-                        <li className='text-base font-medium text-indigo-950 font-sans uppercase hover:underline hover:underline-offset-4 decoration-2 decoration-dashed'><NavLink to="/">Home</NavLink></li>
+                        <li className='text-base font-medium text-indigo-950 font-sans uppercase hover:underline hover:underline-offset-4 decoration-2 decoration-dashed'><Link to="/">Home</Link></li>
 
-                        <li className='text-base font-medium text-indigo-950 font-sans uppercase hover:underline hover:underline-offset-4 decoration-2 decoration-dashed'><NavLink to="/dashboard">Dashboard</NavLink></li>
+                        <li className='text-base font-medium text-indigo-950 font-sans uppercase hover:underline hover:underline-offset-4 decoration-2 decoration-dashed'><Link to="/dashboard">Dashboard</Link></li>
 
                         <li><Badge badgeContent={4} color='info'>
                             <IoIosNotifications className='text-2xl'></IoIosNotifications>

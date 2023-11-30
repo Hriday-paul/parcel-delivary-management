@@ -42,7 +42,7 @@ const MyParcels = () => {
         })
             .then(result => {
                 if (result.isConfirmed) {
-                    axiosSecure.delete(`/deleteFood?id=${id}&&email=${userInfo.email}`)
+                    axiosSecure.delete(`/deleteBook?id=${id}&&email=${userInfo.email}`)
                         .then(({ data }) => {
                             if (data.deletedCount > 0) {
                                 refetch();
