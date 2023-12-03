@@ -13,6 +13,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import { InboxOutlined } from '@ant-design/icons';
 import { Upload } from 'antd';
 import UploadPhoto from "../../Hooks/UploadPhoto/UploadPhoto";
+import UseAddDeliveryMan from "../../Hooks/UseAddDeliveryMan/UseAddDeliveryMan";
 const { Dragger } = Upload;
 
 
@@ -20,6 +21,7 @@ function Register() {
     const { creatUser } = useContext(authContxt);
     const [passwordVisible, setPasswordVisible] = useState(false);
     const { mutate, isPending } = AddUser();
+    const { addDeliveryMan, isSuccess } = UseAddDeliveryMan();
     const [loader, setLoader] = useState(false);
     const [profileImg, setProfileImg] = useState(null);
 
@@ -67,6 +69,9 @@ function Register() {
                             })
                             setLoader(false)
                             mutate({ ...userData, photoURL: imgSource });
+                            if (userData.userType == 'deliveryMan') {
+                                addDeliveryMan({ dName: userData.name, dEmail: user.email, dPhone: userData.phone, dPhoto: imgSource, dReview: [], completeDeliverd: [], runningOrder : [] })
+                            }
                             setProfileImg(null);
                             reset();
                         })
@@ -80,9 +85,9 @@ function Register() {
                             })
                         })
                 })
-                .catch(()=>{
+                .catch(() => {
                     setLoader(false)
-                    toast.error("Phot upload failed ! Try again.")
+                    toast.error("Photo upload failed ! Try again.")
                 })
         }
 
@@ -92,6 +97,9 @@ function Register() {
                     updateProfile(user, { displayName: userData.name, photoURL: null })
                     setLoader(false)
                     mutate({ ...userData, photoURL: null });
+                    if (userData.userType == 'deliveryMan') {
+                        addDeliveryMan({ dName: userData.name, dEmail: userData.email, dPhone: userData.phone, dPhoto: null, dReview: [], completeDeliverd: [], runningOrder : [] })
+                    }
                     reset();
                 })
                 .catch(() => {
@@ -226,7 +234,6 @@ function Register() {
                                             render={({ field }) => (
                                                 <Select
                                                     className="w-full h-10"
-                                                    showSearch
                                                     placeholder="Select a person"
                                                     optionFilterProp="children"
                                                     filterOption={filterOption}

@@ -15,9 +15,10 @@ const UseUpdateBook = () => {
                 toast.success('Your book update successfully');
             }
             else {
-                toast.error('updaate failed');
+                toast.error('update failed');
             }
-            queryClient.invalidateQueries({ queryKey: [`addBook${variables.email}`, 'books'] });
+            queryClient.invalidateQueries([`addBook${variables.id}`, 'book']);
+            queryClient.invalidateQueries('books');
         },
 
         onError: () => {

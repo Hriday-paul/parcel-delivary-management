@@ -18,7 +18,8 @@ const UseAddBook = () => {
             else {
                 toast.error('Something wents wrong');
             }
-            queryClient.invalidateQueries({ queryKey: [`addBook${variables.email}`, 'books'] });
+            // queryClient.invalidateQueries([`addBook${variables.email}`, 'book']);
+            queryClient.invalidateQueries('books');
         },
 
         onError: () => {

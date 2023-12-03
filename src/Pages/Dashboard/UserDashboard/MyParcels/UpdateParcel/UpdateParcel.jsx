@@ -26,11 +26,10 @@ const UpdateParcel = ({parcelInfo}) => {
     } = useForm()
 
     const onSubmit = (data) => {
-        const parcelData = { ...data, weight, price: parseInt(price.current.value), reqDate : new Date(date?.$y, date?.$M, date?.$D,).getTime(), bookDate: Date.now(), status: parcelInfo?.status, id : parcelInfo?._id, deliveryMan: parcelInfo?.deliveryMan, email : userInfo.email }
+        const parcelData = { ...data, weight, price: parseInt(price.current.value), reqDate : new Date(date?.$y, date?.$M, date?.$D,).getTime(), bookDate: Date.now(), status: parcelInfo?.status, id : parcelInfo?._id, deliveryMan: parcelInfo?.deliveryMan}
 
         if (weight > 0 && date) {
             mutate(parcelData);
-            
         }
     }
 

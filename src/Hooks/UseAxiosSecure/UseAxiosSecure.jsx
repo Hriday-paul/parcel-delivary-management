@@ -14,7 +14,8 @@ function UseAxiosSecure() {
             return response;
         }, (error) => {
             if (error.response.status) {
-                logOutUser();
+                console.log(error)
+                //logOutUser();
             }
         })
     }, [])

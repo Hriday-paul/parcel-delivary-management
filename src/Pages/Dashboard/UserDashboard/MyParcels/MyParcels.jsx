@@ -14,12 +14,14 @@ import UpdateParcel from "./UpdateParcel/UpdateParcel";
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import UseAxiosSecure from "../../../../Hooks/UseAxiosSecure/UseAxiosSecure";
 import toast, { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const MyParcels = () => {
     const { userInfo } = useContext(authContxt);
     const { data, isLoading, refetch } = UseMyparcels(userInfo.email);
     const [updateParcel, setUpdateParcel] = useState("");
     const axiosSecure = UseAxiosSecure();
+    const navig = useNavigate();
 
     const [open, setOpen] = useState(false);
     const showDrawer = (parcel) => {
@@ -57,6 +59,10 @@ const MyParcels = () => {
             })
     }
 
+    const handleReview = (parcel) => {
+        navig(`/review/${parcel._id}`)
+    }
+
 
 
     return (
@@ -70,7 +76,7 @@ const MyParcels = () => {
                         <LoadingOutlined style={{ fontSize: 30, }} spin />} /></div> :
                         <div>
                             {
-                                data.length>0 ?
+                                data.length > 0 ?
                                     <div className="">
                                         <div className="overflow-x-auto">
                                             <table className="w-full">
@@ -95,7 +101,7 @@ const MyParcels = () => {
                                                                     {parcel?.percelType}
                                                                 </td>
                                                                 <td className="text-center text-sm font-normal mx-2 lg:mx-2">
-                                                                    {(new Date(parcel?.reqDate).getDate())+'/'+(new Date(parcel?.reqDate).getMonth()+1)+'/'+(new Date(parcel?.reqDate).getFullYear())}
+                                                                    {(new Date(parcel?.reqDate).getDate()) + '/' + (new Date(parcel?.reqDate).getMonth() + 1) + '/' + (new Date(parcel?.reqDate).getFullYear())}
                                                                 </td>
                                                                 <td className="text-center text-sm font-normal mx-2 lg:mx-2">
                                                                     {(new Date(parcel?.bookDate)).getDate() + '/' + ((new Date(parcel?.bookDate)).getMonth() + 1) + '/' + (new Date(parcel?.bookDate)).getFullYear()}
@@ -143,7 +149,9 @@ const MyParcels = () => {
                                                                 </td>
                                                                 <td className="text-center text-sm font-normal mx-2 lg:mx-2">
                                                                     {
-                                                                        parcel?.deliveryMan ? <Button type="primary" icon={<TbMessage2Plus />} /> : <Button disabled={true} type="primary" icon={<TbMessage2Plus />} />
+                                                                        parcel?.deliveryMan ? <Button
+                                                                            onClick={()=>handleReview(parcel)}
+                                                                            type="primary" className="tooltip" data-tip="give review" icon={<TbMessage2Plus />} /> : <Button disabled={true} type="primary" className="tooltip" data-tip="complete deliverd into enable" icon={<TbMessage2Plus />} />
                                                                     }
 
                                                                 </td>

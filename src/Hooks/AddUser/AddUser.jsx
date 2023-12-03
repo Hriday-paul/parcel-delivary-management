@@ -22,7 +22,7 @@ const AddUser = () => {
             else{
                 toast.error('Something wents wrong');
             }
-            queryClient.invalidateQueries({ queryKey: [`user${variables.email}`, `users`] });
+            queryClient.invalidateQueries({ queryKey: [`user${variables.email}`, `admin${variables.email}`, `users`] });
         },
 
         onError: () => {

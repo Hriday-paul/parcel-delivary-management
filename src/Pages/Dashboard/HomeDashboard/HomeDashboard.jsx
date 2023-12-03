@@ -1,12 +1,13 @@
-import { Spin } from "antd";
-import UseAdmin from "../../Hooks/UseAdmin/UseAdmin";
-import AdminRoot from "./AdminDashboard/AdminRoot/AdminRoot";
-import UserDashboard from "./UserDashboard/UserDashboard";
+import { FaRegMoneyBillAlt } from 'react-icons/fa';
+import { FiUsers } from 'react-icons/fi';
+import { MdProductionQuantityLimits, MdOutlineFiberSmartRecord } from 'react-icons/md';
+import Chart from './Chart';
+import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
+import UseAdmin from '../../../Hooks/UseAdmin/UseAdmin';
+import AdminDashBoardHome from '../AdminDashboard/AdminHome/AdminDashBoardHome';
 
-
-
-const Dashboard = () => {
+const HomeDashboard = () => {
     const { data, isLoading } = UseAdmin();
 
 
@@ -30,10 +31,11 @@ const Dashboard = () => {
     return (
         <div>
             {
-                data.admin ? <AdminRoot></AdminRoot> : <UserDashboard></UserDashboard>
+                data.admin ? <AdminDashBoardHome></AdminDashBoardHome> : <></>
             }
         </div>
     );
+    
 };
 
-export default Dashboard;
+export default HomeDashboard;

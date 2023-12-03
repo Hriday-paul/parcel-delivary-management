@@ -11,7 +11,7 @@ const UpdateUser = () => {
             return data.data;
         },
         onSuccess: (data, variables) => {
-            queryClient.invalidateQueries({ queryKey: [`user${variables.email}`, `users`] });
+            queryClient.invalidateQueries({ queryKey: [`user${variables.email}`, `admin${variables.email}`,`users`] });
         },
 
         onError: () => {

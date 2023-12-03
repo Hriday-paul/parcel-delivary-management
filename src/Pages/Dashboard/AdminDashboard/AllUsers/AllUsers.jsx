@@ -7,14 +7,19 @@ import { IoIosBicycle } from "react-icons/io";
 import { DeleteOutlined } from '@ant-design/icons';
 import UpdateUser from "../../../../Hooks/AddUser/UpdateUser";
 import toast, { Toaster } from "react-hot-toast";
+import UseAddDeliveryMan from "../../../../Hooks/UseAddDeliveryMan/UseAddDeliveryMan";
+import UseRemoveDeliveryman from "../../../../Hooks/UseAddDeliveryMan/UseRemoveDeliveryman";
+import Swal from "sweetalert2";
 
 
 const AllUsers = () => {
     const [limit, setLimit] = useState(5);
     const [pagenumber, setPagenumber] = useState(1);
     const { data, isLoading, refetch } = UseUsers(limit, pagenumber);
+    const { removeDeliveryMan: clearDelivaryMan } = UseRemoveDeliveryman();
 
     const { mutate, isSuccess } = UpdateUser();
+    const { addDeliveryMan } = UseAddDeliveryMan()
 
     const onChangePage = (pageNum) => {
         setPagenumber(pageNum);
@@ -31,12 +36,32 @@ const AllUsers = () => {
         mutate({ userType: 'admin', email: email })
     }
 
-    const addDeliveryMan = (id, email) => {
-        mutate({ userType: 'deliveryMan', email: email })
+    const makeDeliveryMan = (user) => {
+        const deliveryManInfo = { dName: user?.name, dEmail: user?.email, dPhone: user?.phone, dPhoto: user?.photoURL, dReview: [], completeDeliverd: [], runningOrder : [] }
+        addDeliveryMan(deliveryManInfo)
+        mutate({ userType: 'deliveryMan', email: user.email })
     }
 
-    const addUser = (id, email) => {
+    const addUser = ( email) => {
         mutate({ userType: 'user', email: email })
+    }
+
+    const removeDeliveryMan = (user) => {
+        Swal.fire({
+            title: 'Deletion, sure !',
+            text: "If you want to delete this delivary man. Then, remove this delivary man all information.",
+            icon: `warning`,
+            cancelButtonText: "No",
+            showCancelButton: true,
+            confirmButtonText: 'Yes',
+            showCloseButton: true,
+        })
+            .then(result => {
+                if (result.isConfirmed) {
+                    clearDelivaryMan(user?.email)
+                    addUser(user?.email)
+                }
+            })
     }
 
 
@@ -86,7 +111,7 @@ const AllUsers = () => {
                                                         <td className="text-center text-sm font-normal mx-2 lg:mx-2">
                                                             {user?.email}
                                                         </td>
-                                                        
+
                                                         <td className="text-center text-sm font-normal mx-2 lg:mx-2">
                                                             {user?.phone}
                                                         </td>
@@ -108,13 +133,13 @@ const AllUsers = () => {
                                                         </td>
                                                         <td className="text-center text-sm font-normal mx-2 lg:mx-2">
                                                             {
-                                                                user?.userType !== 'deliveryMan' ? <Button onClick={() => addDeliveryMan(user._id, user?.email)} className="tooltip"
+                                                                user?.userType !== 'deliveryMan' ? <Button onClick={() => makeDeliveryMan(user)} className="tooltip"
                                                                     data-tip={user?.email == 'admin@gmail.com' ? 'root admin' : 'add delivery man'}
                                                                     type="primary" icon={<IoIosBicycle />} disabled={user?.email == 'admin@gmail.com'} />
 
                                                                     :
 
-                                                                    <Button onClick={() => addUser(user._id, user?.email)} className="tooltip"
+                                                                    <Button onClick={() => removeDeliveryMan(user)} className="tooltip"
                                                                         data-tip={user?.email == 'admin@gmail.com' ? 'root admin' : 'cencel delivery man'}
                                                                         type="primary" icon={<DeleteOutlined />} disabled={user?.email == 'admin@gmail.com'} />
                                                             }

@@ -26,7 +26,8 @@ const BookParcel = () => {
     } = useForm()
 
     const onSubmit = (data) => {
-        const parcelInfo = { ...data, weight, price: parseInt(price.current.value), reqDate : new Date(date?.$y, date?.$M, date?.$D,).getTime() }
+        const parcelInfo = { ...data, weight, price: parseInt(price.current.value), reqDate : new Date(date?.$y, date?.$M, date?.$D,).getTime(), bookDate: new Date(), payment : false, status : 'pending' }
+
 
         if(parseInt(weight)>0 && date){
             mutate(parcelInfo);

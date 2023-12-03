@@ -57,7 +57,7 @@ const AdminRoot = () => {
                                 Dashboard
                             </MenuItem>
 
-                            <MenuItem icon={<FaRegListAlt className='text-xl'></FaRegListAlt>} component={<NavLink className={({ isActive }) => isActive ? "bg-[#0B0D0D] font-medium uppercase" : "font-medium uppercase"} to="/dashboard/bookParcel" />}>All Parcels</MenuItem>
+                            <MenuItem icon={<FaRegListAlt className='text-xl'></FaRegListAlt>} component={<NavLink className={({ isActive }) => isActive ? "bg-[#0B0D0D] font-medium uppercase" : "font-medium uppercase"} to="/dashboard/allParcels" />}>All Parcels</MenuItem>
 
                             <MenuItem icon={<FaPersonRunning className='text-xl'></FaPersonRunning>} component={<NavLink className={({ isActive }) => isActive ? "bg-[#0B0D0D] font-medium uppercase" : "font-medium uppercase"} to="/dashboard/deliverymans" />}>All Delivery Men</MenuItem>
 
