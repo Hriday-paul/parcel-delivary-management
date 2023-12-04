@@ -103,7 +103,7 @@ const ReviewPage = () => {
                                     </div>
                                     <div>
                                         <div className="flex items-center w-20">
-                                            <Rating style={{ maxWidth: 500 }} value={review?.rating} onChange={setRating} readOnly itemStyles={myStyles} />
+                                            <Rating style={{ maxWidth: 500 }} value={review?.rating} readOnly itemStyles={myStyles} />
                                         </div>
                                     </div>
                                 </div>

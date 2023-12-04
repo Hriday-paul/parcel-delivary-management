@@ -4,36 +4,37 @@ import { FiUsers } from "react-icons/fi";
 import { MdOutlineFiberSmartRecord, MdProductionQuantityLimits } from "react-icons/md";
 import UseAxiosSecure from "../../../../Hooks/UseAxiosSecure/UseAxiosSecure";
 import DataChart from "./DataChart";
+import CountUp from 'react-countup';
 
 const AdminDashBoardHome = () => {
-        const axiosSecure = UseAxiosSecure();
-        const [datas, setDatas] = useState({});
-        let bookings = [{date : 3, len : 0}];
-        // useEffect(()=>{
-        //     axiosSecure.get('allParcelList/0/0')
-        //     .then(({data})=>{
-        //         for(let i = 0; i<data.length; i++){
-        //             const getData = bookings.find((d)=>{
-        //                 return d?.date === new Date(data[i].bookDate).getDate()
-        //             })
-                    
-        //             if(getData){
-        //                 console.log(getData.date)
-        //             }
-        //             else{
-        //                 bookings.push(new Date(data[i].bookDate).getDate())
-        //             }
-        //         }
-                
-        //     })
-        // },[])
-        useEffect(()=>{
-            axiosSecure.get('adminDashboard')
-            .then(({data})=>{
+    const axiosSecure = UseAxiosSecure();
+    const [datas, setDatas] = useState({});
+    let bookings = [{ date: 3, len: 0 }];
+    // useEffect(()=>{
+    //     axiosSecure.get('allParcelList/0/0')
+    //     .then(({data})=>{
+    //         for(let i = 0; i<data.length; i++){
+    //             const getData = bookings.find((d)=>{
+    //                 return d?.date === new Date(data[i].bookDate).getDate()
+    //             })
+
+    //             if(getData){
+    //                 console.log(getData.date)
+    //             }
+    //             else{
+    //                 bookings.push(new Date(data[i].bookDate).getDate())
+    //             }
+    //         }
+
+    //     })
+    // },[])
+    useEffect(() => {
+        axiosSecure.get('adminDashboard')
+            .then(({ data }) => {
                 setDatas(data)
             })
-        }, [])
-        return (
+    }, [])
+    return (
         <div className="p-4 md:pt-16 pt-10">
             <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-x-0 md:gap-x-4 gap-y-8 lg:gap-y-14">
                 {/* <div className="bg-white p-5 lg:p-7 flex flex-row justify-between items-center shadow-xl w-full rounded-xl h-28 lg:h-36 border-b-4 border-b-blue-600">
@@ -54,7 +55,12 @@ const AdminDashBoardHome = () => {
                         <h3 className='text-lg text-slate-500 font-medium'>Total Users</h3>
                         <div className='flex flex-row gap-x-2 items-center'>
                             <FiUsers className='text-lg'></FiUsers>
-                            <h4 className='text-2xl font-bold'>{datas ? datas.userLen : 0}</h4>
+                            <h4 className='text-2xl font-bold'>
+                                {
+                                    datas ? <CountUp delay={1} duration={6} end={datas?.userLen} enableScrollSpy={true} scrollSpyOnce={true} /> : 'Loading...'
+                                }
+
+                            </h4>
                         </div>
                     </div>
                 </div>
@@ -79,7 +85,11 @@ const AdminDashBoardHome = () => {
                     <div>
                         <h3 className='text-lg text-slate-500 font-medium'>Total Booked</h3>
                         <div className='flex flex-row gap-x-2 items-center'>
-                            <h4 className='text-2xl font-bold'>{datas ? datas?.bookedlist?.length : 0}</h4>
+                            <h4 className='text-2xl font-bold'>
+                                {
+                                    datas ? <CountUp delay={1} duration={6} end={datas?.bookedlist?.length} enableScrollSpy={true} scrollSpyOnce={true} /> : 'Loading...'
+                                }
+                            </h4>
                         </div>
                     </div>
                 </div>

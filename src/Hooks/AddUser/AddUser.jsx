@@ -15,13 +15,9 @@ const AddUser = () => {
         },
         onSuccess: (data, variables) => {
             // Invalidate and refetch
-            if (data.upsertedCount || data.modifiedCount) {
-                toast.success('Registration Successfully');
-                state ? navig(`${state.from}`) : navig(`/`)
-            }
-            else{
-                toast.error('Something wents wrong');
-            }
+            toast.success('Registration Successfully');
+            state ? navig(`${state.from}`) : navig(`/`)
+        
             queryClient.invalidateQueries({ queryKey: [`user${variables.email}`, `admin${variables.email}`, `users`] });
         },
 

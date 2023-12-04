@@ -11,12 +11,7 @@ const UseUpdateBook = () => {
             return data.data;
         },
         onSuccess: (data, variables) => {
-            if (data.modifiedCount) {
-                toast.success('Your book update successfully');
-            }
-            else {
-                toast.error('update failed');
-            }
+            toast.success('This book update successfully');
             queryClient.invalidateQueries([`addBook${variables.id}`, 'book']);
             queryClient.invalidateQueries('books');
         },

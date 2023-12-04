@@ -15,11 +15,16 @@ import AllParcels from "../Pages/Dashboard/AdminDashboard/AllParcels/AllParcels"
 import AdminDashBoardHome from "../Pages/Dashboard/AdminDashboard/AdminHome/AdminDashBoardHome";
 import HomeDashboard from "../Pages/Dashboard/HomeDashboard/HomeDashboard";
 import ReviewPage from "../Pages/Shared/ReviewPage/ReviewPage";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import DelivaryManDashboard from "../Pages/Dashboard/DelivaryManDashboard/DelivaryManDashboard";
+import MyDeliveeryList from "../Pages/Dashboard/DelivaryManDashboard/MyDeliveeryList/MyDeliveeryList";
+import MyReview from "../Pages/Dashboard/DelivaryManDashboard/MyReview/MyReview";
 
 const rout = createBrowserRouter([
     {
         path: '/',
         element: <Root></Root>,
+        errorElement : <ErrorPage></ErrorPage>,
         children: [
             {
                 path: "/",
@@ -27,7 +32,7 @@ const rout = createBrowserRouter([
             },
             {
                 path: "/review/:id",
-                element: <ReviewPage></ReviewPage>
+                element: <Private><ReviewPage></ReviewPage></Private>
             },
         ]
     },
@@ -38,15 +43,15 @@ const rout = createBrowserRouter([
         children : [
             {
                 path: "/dashboard",
-                element: <HomeDashboard></HomeDashboard>
+                element: <Private><HomeDashboard></HomeDashboard></Private>
             },
             {
                 path: "/dashboard/bookParcel",
-                element: <BookParcel></BookParcel>
+                element: <Private><BookParcel></BookParcel></Private>
             },
             {
                 path : '/dashboard/myParcels',
-                element : <MyParcels></MyParcels>
+                element : <Private><MyParcels></MyParcels></Private>
             },
             {
                 path : '/dashboard/myProfile',
@@ -54,20 +59,32 @@ const rout = createBrowserRouter([
             },
             {
                 path: "/dashboard/adminHome",
-                element: <AdminPrivate><AdminDashBoardHome></AdminDashBoardHome></AdminPrivate>
+                element: <Private><AdminPrivate><AdminDashBoardHome></AdminDashBoardHome></AdminPrivate></Private>
             },
             {
                 path : '/dashboard/users',
-                element : <AdminPrivate><AllUsers></AllUsers></AdminPrivate>
+                element : <Private><AdminPrivate><AllUsers></AllUsers></AdminPrivate></Private>
             },
             {
                 path : '/dashboard/deliverymans',
-                element : <AdminPrivate><DelivaryMans></DelivaryMans></AdminPrivate>
+                element : <Private><AdminPrivate><DelivaryMans></DelivaryMans></AdminPrivate></Private>
             },
             {
                 path : '/dashboard/allParcels',
-                element : <AdminPrivate><AllParcels></AllParcels></AdminPrivate>
-            }
+                element : <Private><AdminPrivate><AllParcels></AllParcels></AdminPrivate></Private>
+            },
+            {
+                path: "/dashboard/DeliveryManHome",
+                element: <Private><DelivaryManDashboard></DelivaryManDashboard></Private>
+            },
+            {
+                path : '/dashboard/myDeliverys', 
+                element : <Private><MyDeliveeryList></MyDeliveeryList></Private>
+            },
+            {
+                path: "/dashboard/myReview",
+                element: <Private><MyReview></MyReview></Private>
+            },
             
         ]
     },

@@ -5,9 +5,11 @@ import Footer from "../Pages/Shared/Footer/Footer"
 function Root() {
 
   return (
-    <div className="max-w-7xl mx-auto px-4">
+    <div>
       <Navbar></Navbar>
-      <Outlet></Outlet>
+      <div className="max-w-7xl mx-auto px-4">
+        <Outlet></Outlet>
+      </div>
       <Footer></Footer>
     </div>
 

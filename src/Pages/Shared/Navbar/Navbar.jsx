@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { IoIosNotifications } from "react-icons/io";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { PiSignOutFill } from "react-icons/pi";
@@ -7,18 +7,19 @@ import { LuLayoutDashboard } from "react-icons/lu";
 import { CgProfile } from "react-icons/cg";
 import Button from '@mui/material/Button';
 import { IoSearch } from "react-icons/io5";
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Badge } from '@mui/material';
+import { RxCross2 } from 'react-icons/rx';
+import { HiOutlineBars3 } from 'react-icons/hi2';
 import { authContxt } from '../../../ContextHandler/Authonicate/Authonicate';
 
 
 
 const Navbar = () => {
-    // const [sideOpen, seSideOpen] = useState(false);
     const { logOutUser, userInfo } = useContext(authContxt);
-   
+    const [slide, setSlide] = useState(false);
     return (
-        <div className='sticky top-0 bg-white z-50'>
+        <div className='sticky top-0 bg-white z-50 max-w-7xl mx-auto px-4'>
             <div className='flex justify-between items-center py-3 lg:py-2'>
                 <div className='flex flex-row items-center'>
                     <img className='h-12 lg:h-14' src="https://i.ibb.co/gj0mB4d/logo-removebg-preview.png" alt="logo" />
@@ -30,7 +31,7 @@ const Navbar = () => {
 
                         <li className='text-base font-medium text-indigo-950 font-sans uppercase hover:underline hover:underline-offset-4 decoration-2 decoration-dashed'><Link to="/dashboard">Dashboard</Link></li>
 
-                        <li><Badge badgeContent={4} color='info'>
+                        <li><Badge badgeContent={1} color='info'>
                             <IoIosNotifications className='text-2xl'></IoIosNotifications>
                         </Badge></li>
                     </ul>
@@ -63,8 +64,31 @@ const Navbar = () => {
                             </ul>
                         </div>
                     </div> : <Link to='/login'><Button variant="contained">Login</Button></Link>}
-                    
-                    <IoSearch className='text-2xl hidden md:block'></IoSearch>
+
+                    <div className='md:hidden ml-2'>
+                        {
+                            !slide && <HiOutlineBars3 className='text-2xl cursor-pointer' onClick={() => setSlide(true)}></HiOutlineBars3>
+                        }
+                        {
+                            slide && <RxCross2 className='text-2xl cursor-pointer' onClick={() => setSlide(false)}></RxCross2>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div className={`absolute border-t block md:hidden border-blue-500 top-0 left-0 py-5 shadow-2xl bg-gray-100  mt-[60px] md:mt-[70px] w-full  ${slide ? "z-50 translate-x-0" : "-translate-x-[750px]"} duration-300`}>
+                <div className='px-4'>
+                    <ul className="border border-blue-400 p-5 rounded-md">
+                        <li>
+                            <Link onClick={() => setSlide(false)} to="/" className="block py-2 pl-3 text-black pr-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 duration-200 cursor-pointer">Home</Link>
+                        </li>
+                        <li>
+                            <Link onClick={() => setSlide(false)} to="/dashboard" className="block py-2 pl-3 text-black pr-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 duration-200 cursor-pointer">Dashboard</Link>
+                        </li>
+                       
+                        <li>
+                            <Link onClick={() => setSlide(false)} className="block py-2 pl-3 text-black pr-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 duration-200 cursor-pointer">Contact</Link>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

@@ -113,10 +113,10 @@ const MyParcels = () => {
                                                                     {parcel.status === 'pending' && <Spin indicator={
                                                                         <LoadingOutlined style={{ color: '#4096FF', fontSize: 14, }} spin />} />}
 
-                                                                    {parcel.status === 'onWay' && <MdDirectionsRun className="text-lg"></MdDirectionsRun>}
-                                                                    {parcel.status === 'delivered' && <TiTick className="text-green-500 text-lg" />}
-                                                                    {parcel.status === 'returned' && <IoReturnDownBack className="text-orange-500 text-lg" />}
-                                                                    {parcel.status === 'cancel' && <FcCancel className="text-base" />}
+                                                                    {parcel.status === 'onWay' && <MdDirectionsRun className="text-lg mx-auto"></MdDirectionsRun>}
+                                                                    {parcel.status === 'delivered' && <TiTick className="text-green-500 text-lg mx-auto" />}
+                                                                    {parcel.status === 'returned' && <IoReturnDownBack className="text-orange-500 text-lg mx-auto" />}
+                                                                    {parcel.status === 'cancel' && <FcCancel className="text-base mx-auto" />}
 
                                                                     <br />
                                                                     <span className="badge badge-ghost badge-sm">{parcel?.status}</span>
