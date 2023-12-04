@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const axiosSequre = axios.create({
-    baseURL: 'http://localhost:4000',
+    baseURL: 'https://assignment-12-7zcy.onrender.com',
     // withCredentials : true,
 })
 function UseAxios() {

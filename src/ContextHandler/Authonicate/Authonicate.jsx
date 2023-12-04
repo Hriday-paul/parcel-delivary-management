@@ -35,11 +35,11 @@ const Authonicate = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             if (currentUser) {
                 const user = { email: currentUser.email }
-                axios.put("http://localhost:4000/crtJwt", user, { withCredentials: true })
+                axios.put("https://assignment-12-7zcy.onrender.com/crtJwt", user, { withCredentials: true })
             }
             else {
                 const user = { email: userInfo.email };
-                axios.put("http://localhost:4000/dltJwt", user, { withCredentials: true })
+                axios.put("https://assignment-12-7zcy.onrender.com/dltJwt", user, { withCredentials: true })
             }
             setUserInfo(currentUser)
             setLoading(false)
