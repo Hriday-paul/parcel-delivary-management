@@ -17,7 +17,7 @@ const Home = () => {
                 <title>Delivered</title>
             </Helmet>
             {/* <iframe className='h-[500px] w-80' src="https://lottie.host/embed/8dcb3f40-8ac6-495d-9edc-99f9fd9c4cb3/XTeOouwT9o.json"></iframe> */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-5 items-center min-h-[calc(100vh-72px)]">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-0 lg:gap-x-5  gap-y-5 items-center min-h-[calc(100vh-72px)]">
                 <div className="order-2 md:order-1 text-center md:text-left">
                     <h2 className="text-3xl lg:text-4xl font-bold uppercase text-indigo-950 mb-2">
                         We have faster <span className="text-orange-600">&</span> safety

@@ -24,7 +24,7 @@ function Private({ children }) {
                     />
                 }
             />
-            {/* <iframe className='h-[100px] w-80' src="https://lottie.host/embed/8dcb3f40-8ac6-495d-9edc-99f9fd9c4cb3/XTeOouwT9o.json"></iframe> */}
+            
         </div>
     }
 
@@ -32,7 +32,7 @@ function Private({ children }) {
         return children;
     }
 
-    return <Navigate state={{from : location.pathname}} to="/login" replace></Navigate>
+    return <Navigate state={{from : '/'}} to="/login" replace></Navigate>
 }
 
 export default Private

@@ -113,7 +113,7 @@ const ReviewPage = () => {
                         }) : <Empty></Empty>
                     }
                 </div>
-                <div className="p-10 bg-slate-100 border-b flex gap-x-5">
+                <div className="p-4 md:p-8 lg:p-10 bg-slate-100 border-b flex gap-x-5">
 
                     <form className="max-w-sm flex gap-x-1">
                         <div className="flex">
@@ -125,7 +125,7 @@ const ReviewPage = () => {
                         <Button onClick={handleReview} type="submit" className="text-white hover:text-white" size="large">Submit</Button>
                     </form>
 
-                    <div className="flex items-center w-36">
+                    <div className="flex items-center w-32 md:w-36 lg:w-40">
                         <Rating style={{ maxWidth: 500 }} value={rating} onChange={setRating} itemStyles={myStyles} />
                     </div>
 

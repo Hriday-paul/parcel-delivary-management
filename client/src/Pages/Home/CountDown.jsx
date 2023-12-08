@@ -22,20 +22,20 @@ const CountDown = () => {
                         <div className='border count flex space-y-3 flex-col items-center justify-center rounded-3xl md:rounded-r-none md:border-r-0 border-b-0 rounded-b-none md:border-b md:rounded-bl-3xl w-64 md:w-44 lg:w-64 h-40'>
                             
                             {
-                                datas ? <CountUp delay={1} duration={8} end={datas?.parcelRunnigLen}  enableScrollSpy={true} scrollSpyOnce={true} redraw={true}/> : 'Loading...'
+                                datas ? <CountUp delay={1} duration={8} end={datas?.parcelRunnigLen || 0}  enableScrollSpy={true} scrollSpyOnce={true} redraw={true}/> : 'Loading...'
                             }
                             <h3 className='text-2xl font-serif md:text-xl lg:text-2xl font-medium text-slate-800'>Percel Booked</h3>
                         </div>
                         <div className='border count flex space-y-3 flex-col items-center justify-center w-64 md:w-44 lg:w-64 h-40'>
                             {
-                                datas ? <CountUp delay={1} duration={6} end={datas?.bookedLen} enableScrollSpy={true} scrollSpyOnce={true} redraw={true}/> : 'Loading...'
+                                datas ? <CountUp delay={1} duration={6} end={datas?.bookedLen || 0} enableScrollSpy={true} scrollSpyOnce={true} redraw={true}/> : 'Loading...'
                             }
                             <h3 className='text-2xl text-slate-800 font-serif md:text-xl lg:text-2xl font-medium '>Percel Delivered</h3>
                         </div>
                         <div className='border count flex space-y-3 flex-col items-center justify-center rounded-3xl md:rounded-l-none md:border-l-0 border-t-0 rounded-t-none md:border-t md:rounded-tr-3xl w-64 md:w-44 lg:w-64 h-40'>
                             
                             {
-                                datas ? <CountUp delay={1} duration={6} end={datas?.userLen} enableScrollSpy={true} scrollSpyOnce={true} redraw={true} /> : 'Loading...'
+                                datas ? <CountUp delay={1} duration={6} end={datas?.userLen ||0} enableScrollSpy={true} scrollSpyOnce={true} redraw={true} /> : 'Loading...'
                             }
                             <h3 className='text-2xl font-serif md:text-xl lg:text-2xl font-medium text-slate-800'>Users</h3>
                         </div>

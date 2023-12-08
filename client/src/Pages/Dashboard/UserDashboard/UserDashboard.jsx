@@ -8,12 +8,13 @@ import { IoMdSettings } from "react-icons/io";
 import { FaListAlt, FaUserTie } from "react-icons/fa";
 import { LuLayoutDashboard } from 'react-icons/lu';
 import { FaRegCircleQuestion } from "react-icons/fa6";
-import { Divide as Hamburger } from 'hamburger-react'
+import { Divide as Hamburger, Spin } from 'hamburger-react'
 import { useContext, useState } from 'react';
 import { authContxt } from '../../../ContextHandler/Authonicate/Authonicate'
 import UseGetUser from '../../../Hooks/UseGetUser/UseGetUser';
 import UseDeliveryMan from '../../../Hooks/UseDeliveryMan/UseDeliveryMan';
 import DelivaryManDashboard from '../DelivaryManDashboard/DelivaryManDashboard';
+import { LoadingOutlined } from '@ant-design/icons';
 
 
 const UserDashboard = () => {
@@ -22,12 +23,25 @@ const UserDashboard = () => {
     const [collapsed, setCollapsed] = useState(false);
     const [toggled, setToggled] = useState(false);
     const { deliveryData, DelivLoading } = UseDeliveryMan();
-    console.log(deliveryData)
 
     return (
         <div>
             {
-                DelivLoading ? "loading" :
+                DelivLoading ? <div className="min-h-[90vh] flex justify-center items-center">
+                <Spin
+                size='large'
+                    indicator={
+                        <LoadingOutlined
+                            style={{
+                                fontSize: 40,
+                                fontWeight : 'bold'
+                            }}
+                            spin
+                        />
+                    }
+                />
+                
+            </div> :
                     <div>
                         {
                             !deliveryData.deliveryMan ? <div className='flex'>
