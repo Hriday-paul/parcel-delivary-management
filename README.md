@@ -57,4 +57,4 @@ ___
 ___ 
 
 
-> If you want to admin email and password, you send me an email : ``` hridoychandrapaul.10@gmail.com ``` or contact me.
+> Admin email : ``` admin@gmail.com ```, password : ``` @dmiN00 ``` <br>
